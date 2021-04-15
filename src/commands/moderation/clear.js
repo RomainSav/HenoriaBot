@@ -12,8 +12,9 @@ module.exports = class Clear extends Command {
             dirname: __dirname,
             botPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'MANAGE_MESSAGES'],
             userPermissions: ["MANAGE_MESSAGES"],
-            cooldown: 3000,
-            description: 'Clear messages in channel'
+            cooldown: 5000,
+            description: 'Clear messages in channel',
+            usage: 'clear [amount]'
         })
     }
 
@@ -46,7 +47,7 @@ module.exports = class Clear extends Command {
             }
 
             await message.channel.bulkDelete(messages, true).catch(err => bot.logger.error(`Command : '${this.help.name}' has error : ${err.message}`));
-            message.channel.success(settings.language, 'MODERATION/MESSAGES_DELETED', message.size).then(m => m.delete({timeout: 3000}))
+            message.channel.success(settings.language, 'MODERATION/MESSAGES_DELETED', messages.size).then(m => m.delete({timeout: 3000}))
         })
     }
 

@@ -1,6 +1,6 @@
 const languageData = {
 	// CLEAR MESSAGES
-	MESSAGES_DELETED: (messages) => `${messages} messages were successfully deleted.`,
+	MESSAGES_DELETED: (messages) => `${messages} message(s) on bien été supprimés`,
 };
 
 const translate = (key, args) => {

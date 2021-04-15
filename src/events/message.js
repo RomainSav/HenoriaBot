@@ -30,12 +30,12 @@ module.exports = class Message extends Event {
             }
 
             // Make sure guild only commands are done in the guild only
-            if (message.guild && cmd.guildOnly) return message.error(bot.config.language, `EVENTS/GUILD_COMMAND_ERROR`).then(m => m.delete({timeout: 5000}));
+            if (message.guild && cmd.guildOnly) return message.channel.error(bot.config.language, `EVENTS/GUILD_COMMAND_ERROR`).then(m => m.delete({timeout: 5000}));
 
             // Make sure NSFW commands are only being run in a NSFW channel
             if ((message.channel.type != 'dm') && ((!message.channel.nsfw) && cmd.conf.nsfw)) {
                 if (message.deletable) message.delete();
-                return message.error(bot.config.language, 'EVENTS/NOT_NSFW_CHANNEL').then(m => m.delete({ timeout:5000 }));
+                return message.channel.error(bot.config.language, 'EVENTS/NOT_NSFW_CHANNEL').then(m => m.delete({ timeout:5000 }));
             } 
 
             // Make sure user does not have access to ownerOnly commands
@@ -45,7 +45,7 @@ module.exports = class Message extends Event {
             if (cmd.conf.botPermissions[0] && message.guild) {
                 if (!message.channel.permissionsFor(bot.user).has('SEND_MESSAGES')) return;
 				if (!message.channel.permissionsFor(bot.user).has('EMBED_LINKS')) {
-					return message.sendT(bot.config.language, 'MISSING_PERMISSION', 'EMBED_LINKS');
+					return message.channel.sendT(bot.config.language, 'MISSING_PERMISSION', 'EMBED_LINKS');
 				}
             }
 
@@ -63,7 +63,7 @@ module.exports = class Message extends Event {
 
 				if (now < expirationTime) {
 					const timeLeft = (expirationTime - now) / 1000;
-					return message.error(bot.config.language, 'EVENTS/COMMAND_COOLDOWN', timeLeft.toFixed(1)).then(m => m.delete({ timeout:5000 }));
+					return message.channel.error(bot.config.language, 'EVENTS/COMMAND_COOLDOWN', timeLeft.toFixed(1)).then(m => m.delete({ timeout:5000 }));
 				}
 			}
 

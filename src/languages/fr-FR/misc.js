@@ -1,7 +1,9 @@
+const permisisons = require('../../../resources/permissions.json');
+
 // languageData
 const languageData = {
-	MISSING_PERMISSION: (permission) => `I am missing the permission: \`${permission}\`.`,
-    INCORRECT_FORMAT: (commandExample) => `Please use the format: \`${commandExample}\`.`,
+	MISSING_PERMISSION: (permission) => `Il me manque la permission: \`${permisisons[permission]}\`.`,
+    INCORRECT_FORMAT: (commandExample) => `Utiliser le format: \`${commandExample}\`.`,
 };
 
 const translate = (key, args) => {
