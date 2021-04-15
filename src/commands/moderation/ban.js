@@ -56,7 +56,7 @@ module.exports = class Ban extends Command {
 
         await banned_user.ban({reason: reason})
             .then(member => {
-                return message.channel.success(settings.language, "MODERATION/SUCCESS_BAN", member.user.username).then(m => m.delete({timeout: 10000}));
+                return message.channel.success(settings.language, "MODERATION/SUCCESS_BAN", member.user.username);
             })
     }
 }

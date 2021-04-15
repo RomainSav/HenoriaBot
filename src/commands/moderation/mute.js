@@ -54,7 +54,7 @@ module.exports = class Mute extends Command {
 
         await muted_user.roles.add(muted_role)
             .then((member) => {
-                return message.channel.success(settings.language, "MODERATION/SUCCESS_MUTE", member.user.username).then(m => m.delete({timeout: 10000}));
+                return message.channel.success(settings.language, "MODERATION/SUCCESS_MUTE", member.user.username);
             })
             .catch((err) => {
                 bot.logger.error(err)

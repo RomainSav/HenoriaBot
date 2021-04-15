@@ -12,6 +12,14 @@ module.exports = Structures.extend('TextChannel', Channel => {
 			}
 		}
 
+		info(language, key, args) {
+			try {
+				return this.send({ embed: {color: "BLUE", description: `${this.client.translate(language, key, args)}`} })
+			} catch (err) {
+				this.client.logger.error(err.message);
+			}
+		}
+
 		// This will add the error emoji as the prefix and then translate the message
 		error(language, key, args) {
 			try {

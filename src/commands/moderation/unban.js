@@ -53,7 +53,7 @@ module.exports = class Ban extends Command {
 
             message.guild.members.unban(member, reason)
                 .then(user => {
-                    return message.channel.success(settings.language, "MODERATION/SUCCESS_UNBAN", user.username).then(m => m.delete({timeout: 10000}));
+                    return message.channel.success(settings.language, "MODERATION/SUCCESS_UNBAN", user.username);
                 })
 
         })
