@@ -21,8 +21,8 @@ node src/main.js
 
 # Commandes
 ### Modération 
-- [ ] ban
-- [ ] unban
+- [x] ban
+- [x] unban
 - [ ] tempban
 - [x] mute
 - [x] unmute
