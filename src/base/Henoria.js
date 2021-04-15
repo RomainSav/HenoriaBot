@@ -13,6 +13,59 @@ module.exports = class Henoria extends Client {
         this.cooldowns = new Collection();
 
         this.config = require('../../resources/config.json');
+
+		this.Activity = [];
+		this.PresenceType = 'PLAYING';
+    }
+
+    /**
+     * @param {array} array 
+     * @param {string} type 
+     */
+    loadActivity() {
+        let allMembers = 0;
+        this.guilds.cache.map(guild => {
+            allMembers += guild.memberCount;
+        })
+        this.Activity = [
+            "www.henoria.fr",
+            "+help | Henoria",
+            "Henoria MC:BE",
+            `${allMembers} Membre(s)`
+        ];
+        try {
+            let i = 0;
+            setInterval(() => {
+                this.user.setActivity(`${this.Activity[i++ % this.Activity.length]}`, { type: this.PresenceType })
+            }, 10000)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    loadMuteRole() {
+        this.guilds.cache.map(guild => {
+            let mute_role = guild.roles.cache.find(r => r.name === "Mute")
+            if (!mute_role) {
+                guild.roles.create({
+                    data: {
+                        name: "Mute",
+                        color: "GRAY",
+                        mentionable: false,
+                    },
+                    reason: "Missing `Mute` role",
+                }).then((role) => {
+                    guild.channels.cache.map(channel => {
+                        channel.overwritePermissions([
+                            {
+                                id: role.id,
+                                deny: ["SEND_MESSAGES", "SPEAK", "STREAM"]
+                            }
+                        ])
+                    })
+                })
+            }
+        })
     }
 
     loadCommand(commandPath, commandName) {

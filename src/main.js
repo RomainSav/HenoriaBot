@@ -34,6 +34,9 @@ const path = require('path');
         }
     })
 
-    bot.login(bot.config.token);
+    bot.login(bot.config.token).then(() => {
+        bot.loadActivity();
+        bot.loadMuteRole();
+    })
 
 })();

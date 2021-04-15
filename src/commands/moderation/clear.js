@@ -8,12 +8,12 @@ module.exports = class Clear extends Command {
     constructor(bot) {
         super(bot, {
             name: 'clear',
-            guildOnly: false,
+            guildOnly: true,
             dirname: __dirname,
             botPermissions: ['SEND_MESSAGES', 'EMBED_LINKS', 'MANAGE_MESSAGES'],
             userPermissions: ["MANAGE_MESSAGES"],
             cooldown: 5000,
-            description: 'Clear messages in channel',
+            description: 'Supprimer des messages dans un salon',
             usage: 'clear [amount]'
         })
     }
@@ -26,7 +26,7 @@ module.exports = class Clear extends Command {
      */
     async run(bot, message, args, settings) {
 
-        if (!message.channel.permissionsFor(message.author).has("MANAGE_MESSAGES")) return message.channel.send(settings.language, 'USER_PERMISSION', 'MANAGE_MESSAGES').then(m => m.delete({ timeout: 10000 }));
+        if (!message.channel.permissionsFor(message.author).has("MANAGE_MESSAGES")) return message.channel.error(settings.language, 'USER_PERMISSION', 'MANAGE_MESSAGES').then(m => m.delete({ timeout: 10000 }));
 
         // Make sure bot can delete other peoples messages
         if (!message.channel.permissionsFor(bot.user).has("MANAGE_MESSAGES")) {

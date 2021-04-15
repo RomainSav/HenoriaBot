@@ -1,6 +1,7 @@
 const languageData = {
 	// CLEAR MESSAGES
 	MESSAGES_DELETED: (messages) => `${messages} message(s) on bien été supprimés`,
+	SUCCESS_MUTE: (member) => `**${member}** a été rendu muet`
 };
 
 const translate = (key, args) => {
