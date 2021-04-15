@@ -28,5 +28,5 @@ node src/main.js
 - [x] unmute
 - [x] tempmute
 - [x] clear
-- [ ] lock
-- [ ] unlock
+- [x] lock
+- [x] unlock
