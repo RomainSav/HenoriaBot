@@ -47,14 +47,14 @@ module.exports = class Mute extends Command {
         }
 
         if (muted_user.id === message.author.id) {
-            return message.channel.error(settings.language, "EVENTS/CANNOT_AUTO_MUTE")
+            return message.channel.error(settings.language, "EVENTS/CANNOT_AUTO_MUTE").then(m => m.delete({timeout: 10000}));
         }
 
         const reason = args.slice(1).join(" ");
 
         await muted_user.roles.add(muted_role)
             .then((member) => {
-                return message.channel.success(settings.language, "MODERATION/SUCCESS_MUTE", member.user.username)
+                return message.channel.success(settings.language, "MODERATION/SUCCESS_MUTE", member.user.username).then(m => m.delete({timeout: 10000}));
             })
             .catch((err) => {
                 bot.logger.error(err)

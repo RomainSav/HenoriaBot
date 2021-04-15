@@ -45,18 +45,18 @@ module.exports = class Ban extends Command {
         }
         
         if (banned_user.id === message.author.id) {
-            return message.channel.error(settings.language, "EVENTS/CANNOT_AUTO_BAN")
+            return message.channel.error(settings.language, "EVENTS/CANNOT_AUTO_BAN").then(m => m.delete({timeout: 10000}));
         }
 
         if (!banned_user.bannable) {
-            return message.channel.error(settings.language, "EVENTS/CANNOT_BAN", banned_user.user.username)
+            return message.channel.error(settings.language, "EVENTS/CANNOT_BAN", banned_user.user.username).then(m => m.delete({timeout: 10000}));
         }
 
         const reason = args.slice(1).join(" ");
 
         await banned_user.ban({reason: reason})
             .then(member => {
-                return message.channel.success(settings.language, "MODERATION/SUCCESS_BAN", member.user.username)
+                return message.channel.success(settings.language, "MODERATION/SUCCESS_BAN", member.user.username).then(m => m.delete({timeout: 10000}));
             })
     }
 }

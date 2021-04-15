@@ -56,7 +56,7 @@ module.exports = class Unmute extends Command {
 
         await muted_user.roles.remove(muted_role)
             .then(member => {
-                return message.channel.success(settings.language, "MODERATION/SUCCESS_UNMUTE", member.user.username)
+                return message.channel.success(settings.language, "MODERATION/SUCCESS_UNMUTE", member.user.username).then(m => m.delete({timeout: 10000}));
             })
 
     }
