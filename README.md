@@ -24,8 +24,8 @@ node src/main.js
 - [ ] ban
 - [ ] unban
 - [ ] tempban
-- [ ] mute
-- [ ] unmute
+- [x] mute
+- [x] unmute
 - [ ] tempmute
 - [x] clear
 - [ ] lock

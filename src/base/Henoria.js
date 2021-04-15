@@ -46,7 +46,7 @@ module.exports = class Henoria extends Client {
     loadMuteRole() {
         this.guilds.cache.map(guild => {
             let mute_role = guild.roles.cache.find(r => r.name === "Mute")
-            if (!mute_role) {
+            if (mute_role === null) {
                 guild.roles.create({
                     data: {
                         name: "Mute",

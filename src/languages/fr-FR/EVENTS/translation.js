@@ -4,7 +4,9 @@ const languageData = {
     COMMAND_COOLDOWN: (seconds) => `Vous devez attendre ${seconds} secondes(s) entre chaque commande`,
     MISSING_USER: 'Vous devez mentionner un membre',
     USER_DONT_EXISTS: (member) => `L'utilisateur **${member}** n'existe pas`,
-    CANNOT_AUTO_MUTE: "Vous ne pouvez pas vous mute vous même"
+    CANNOT_AUTO_MUTE: "Vous ne pouvez pas vous mute vous même",
+    CANNOT_AUTO_UNMUTE: "Vous ne pouvez pas vous unmute vous même",
+    DONT_HAVE_MUTE_ROLE: (member) => `**${member}** n'est pas muet`
 };
 
 const translate = (key, args) => {
