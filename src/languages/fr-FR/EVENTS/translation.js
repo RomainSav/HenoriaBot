@@ -9,7 +9,8 @@ const languageData = {
     DONT_HAVE_MUTE_ROLE: (member) => `**${member}** n'est pas muet`,
     CANNOT_AUTO_BAN: "Vous ne pouvez pas vous ban vous même",
     CANNOT_BAN: (member) => `Je ne peux pas bannir **${member}**`,
-    USER_NOT_BAN: (member) => `**${member}** n'est pas banni`
+    USER_NOT_BAN: (member) => `**${member}** n'est pas banni`,
+    NOT_VALID_TIME: "Veuillez indiquer une durée valide"
 };
 
 const translate = (key, args) => {
