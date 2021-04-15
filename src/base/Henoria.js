@@ -30,4 +30,16 @@ module.exports = class Henoria extends Client {
             return `Unable to load command ${commandName} : ${err}`;
         }
     }
+
+    translate(language, key, args) {
+        let languageFile;
+		if (key.includes('/')) {
+			const word = key.split('/');
+			languageFile = require(`../languages/${language}/${word[0]}/translation`);
+			return languageFile(word[1], args);
+		} else {
+			languageFile = require(`../languages/${language}/misc`);
+			return languageFile(key, args);
+		}
+    }
 }
