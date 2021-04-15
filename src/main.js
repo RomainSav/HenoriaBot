@@ -3,6 +3,7 @@ const bot = new Client();
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const path = require('path');
+require('./structures');
 
 (async () => {
 
