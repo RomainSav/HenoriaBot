@@ -1,18 +1,25 @@
-const { MessageEmbed, Collection } = require('discord.js');
+const { MessageEmbed, Collection, Message } = require('discord.js');
+const Henoria = require('../base/Henoria');
 const Event = require('../structures/Event');
 
 module.exports = class Message extends Event {
 
+    /**
+     * @param {Henoria} bot 
+     * @param {Message} message 
+     * @returns 
+     */
     async run(bot, message) {
 
         if (message.author.bot) return;
 
         // If bot was mentioned
-        if (message.content === `<@${bot.user.id}>`) {
+        if (message.mentions.has(bot.user)) {
             const embed = new MessageEmbed()
             .setAuthor(bot.user.username, bot.user.displayAvatarURL({ format: 'png' }))
             .setThumbnail(bot.user.displayAvatarURL({ format: 'png' }))
-            .setDescription(`Salut à toi ! Pour voir les commandes que je propose, il te suffit de faire -help`);
+            .setColor("BLUE")
+            .setDescription(`Salut à toi ! Pour voir les commandes que je propose, il te suffit de faire ${bot.config.prefix}help`);
             return message.channel.send(embed);
         }
 
