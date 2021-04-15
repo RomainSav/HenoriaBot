@@ -6,7 +6,10 @@ const languageData = {
     USER_DONT_EXISTS: (member) => `L'utilisateur **${member}** n'existe pas`,
     CANNOT_AUTO_MUTE: "Vous ne pouvez pas vous mute vous même",
     CANNOT_AUTO_UNMUTE: "Vous ne pouvez pas vous unmute vous même",
-    DONT_HAVE_MUTE_ROLE: (member) => `**${member}** n'est pas muet`
+    DONT_HAVE_MUTE_ROLE: (member) => `**${member}** n'est pas muet`,
+    CANNOT_AUTO_BAN: "Vous ne pouvez pas vous ban vous même",
+    CANNOT_BAN: (member) => `Je ne peux pas bannir **${member}**`,
+    USER_NOT_BAN: (member) => `**${member}** n'est pas banni`
 };
 
 const translate = (key, args) => {

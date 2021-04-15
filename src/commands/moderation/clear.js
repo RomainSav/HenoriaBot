@@ -36,7 +36,6 @@ module.exports = class Clear extends Command {
 
         // Get number of messages to removed
 		const amount = parseInt(args[0]) + 1;
-        console.log(amount);
 
         if (!amount) return message.channel.error(settings.language, 'INCORRECT_FORMAT', settings.prefix.concat(this.help.usage)).then(m => m.delete({ timeout: 5000 }));
 

@@ -10,7 +10,7 @@ module.exports = class Mute extends Command {
             name: 'mute',
             guildOnly: true,
             dirname: __dirname,
-            botPermissions: ["MANAGE_ROLES"],
+            botPermissions: ["MANAGE_ROLES", 'SEND_MESSAGES', 'EMBED_LINKS', 'MANAGE_MESSAGES'],
             userPermissions: ["DEAFEN_MEMBERS"],
             description: "Rendre un membre muet",
             usage: "mute [member]"

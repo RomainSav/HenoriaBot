@@ -10,7 +10,7 @@ module.exports = class Unmute extends Command {
             name: 'unmute',
             guildOnly: true,
             dirname: __dirname,
-            botPermissions: ["MANAGE_ROLES"],
+            botPermissions: ["MANAGE_ROLES", 'SEND_MESSAGES', 'EMBED_LINKS', 'MANAGE_MESSAGES'],
             userPermissions: ["DEAFEN_MEMBERS"],
             description: "Enlever le role muet à un membre",
             usage: "unmute [member]"
