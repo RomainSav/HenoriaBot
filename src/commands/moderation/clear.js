@@ -35,19 +35,17 @@ module.exports = class Clear extends Command {
         }
 
         // Get number of messages to removed
-		const amount = args[0];
+		const amount = parseInt(args[0]) + 1;
+        console.log(amount);
 
         if (!amount) return message.channel.error(settings.language, 'INCORRECT_FORMAT', settings.prefix.concat(this.help.usage)).then(m => m.delete({ timeout: 5000 }));
 
         if (isNaN(amount) || (amount > 100) || (amount < 1)) return message.channel.error(settings.language, 'INCORRECT_FORMAT', settings.prefix.concat(this.help.usage)).then(m => m.delete({ timeout: 5000 }));
     
         await message.channel.messages.fetch({ limit: amount }).then(async messages => {
-            if (message.guild.members.cache.get(args[1])) {
-                messages = messages.filter((m) => m.author.id === message.guild.members.get(args[1]).user.id);
-            }
 
             await message.channel.bulkDelete(messages, true).catch(err => bot.logger.error(`Command : '${this.help.name}' has error : ${err.message}`));
-            message.channel.success(settings.language, 'MODERATION/MESSAGES_DELETED', messages.size).then(m => m.delete({timeout: 3000}))
+            message.channel.success(settings.language, 'MODERATION/MESSAGES_DELETED', (messages.size - 1)).then(m => m.delete({timeout: 3000}))
         })
     }
 

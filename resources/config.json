@@ -6,7 +6,7 @@
     "ownerID": ["533306853317279773", "507975251330727950"],
 
     "emojis": {
-		"cross": "':negative_squared_cross_mark:'",
-		"tick": "':white_check_mark:'"
+		"cross": ":negative_squared_cross_mark:",
+		"tick": ":white_check_mark:"
 	}
 }
