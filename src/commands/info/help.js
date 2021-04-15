@@ -35,7 +35,7 @@ module.exports = class Ban extends Command {
                     },
                     {
                         name: '🛠️ Modération',
-                        value: '`ban`, `unban`, `mute`, `unmute`, `clear`',
+                        value: '`ban`, `tempban`, `unban`, `mute`, `tempmute`, `unmute`, `clear`',
                     },
                     {
                         name: '🚨 Admin',

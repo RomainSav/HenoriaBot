@@ -1,5 +1,6 @@
 const { Client, Collection } = require('discord.js');
 const path = require('path');
+const {Player} = require('discord-player');
 
 module.exports = class Henoria extends Client {
     
@@ -16,6 +17,8 @@ module.exports = class Henoria extends Client {
 
 		this.Activity = [];
 		this.PresenceType = 'PLAYING';
+
+        this.player = new Player(this);
     }
 
     /**

@@ -1,9 +1,10 @@
 const Client = require('./base/Henoria');
-require('./structures/Channel');
+require('./structures');
 const bot = new Client();
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const path = require('path');
+const fs = require('fs');
 
 (async () => {
 
@@ -32,6 +33,15 @@ const path = require('path');
         } catch (err) {
             bot.logger.error(`Failed to load Event: ${name} error: ${err.message}`);
         }
+    })
+
+    // load music events
+    const musicEvtFiles = await readdir(path.join(__dirname, 'music'));
+    bot.logger.log(`=-=-=-=-=-=-=- Loading music events(s): ${musicEvtFiles.length} -=-=-=-=-=-=-=`);
+    musicEvtFiles.forEach(file => {
+        const event = require(`./music/${file}`);
+        bot.logger.log(`Loading Music Event : ${file}`);
+        bot.player.on(file.split(".")[0], event.bind(null, bot));
     })
 
     bot.login(bot.config.token).then(() => {
