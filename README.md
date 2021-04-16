@@ -33,3 +33,9 @@ node src/main.js
 
 ## Musique
 - [x] play
+- [x] pause
+- [x] queue
+- [x] resume
+- [x] shuffle
+- [x] skip
+- [x] stop
