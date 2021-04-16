@@ -5,7 +5,7 @@ const Command = require("../../structures/Command");
 const parseDuration = require('parse-duration');
 const humanizeDuration = require('humanize-duration');
 
-module.exports = class Mute extends Command {
+module.exports = class Tempmute extends Command {
 
     constructor(bot) {
         super(bot, {

@@ -1,6 +1,7 @@
 const languageData = {
 	GUILD_COMMAND_ERROR: 'Cette commande ne peux que être executer dans un serveur',
     NOT_NSFW_CHANNEL: 'Cette commande ne peux que être executer dans un salon `NSFW`',
+    NOT_OWNER: `Vous devez être créateur pour executer cette commande`,
     COMMAND_COOLDOWN: (seconds) => `Vous devez attendre ${seconds} secondes(s) entre chaque commande`,
     MISSING_USER: 'Vous devez mentionner un membre',
     USER_DONT_EXISTS: (member) => `L'utilisateur **${member}** n'existe pas`,
@@ -10,7 +11,9 @@ const languageData = {
     CANNOT_AUTO_BAN: "Vous ne pouvez pas vous ban vous même",
     CANNOT_BAN: (member) => `Je ne peux pas bannir **${member}**`,
     USER_NOT_BAN: (member) => `**${member}** n'est pas banni`,
-    NOT_VALID_TIME: "Veuillez indiquer une durée valide"
+    NOT_VALID_TIME: "Veuillez indiquer une durée valide",
+    CHANNEL_DONT_EXISTS: `Le salon mentionné n'existe pas`,
+    MISSING_CHANNEL: `Vous devez mentionner un salon`
 };
 
 const translate = (key, args) => {

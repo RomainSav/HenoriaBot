@@ -15,6 +15,8 @@ module.exports = class Henoria extends Client {
 
         this.config = require('../../resources/config.json');
 
+        this.db = require('../utils/database.json');
+
 		this.Activity = [];
 		this.PresenceType = 'PLAYING';
 

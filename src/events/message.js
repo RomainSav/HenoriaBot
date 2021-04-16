@@ -13,6 +13,25 @@ module.exports = class Message extends Event {
 
         if (message.author.bot) return;
 
+
+        // Anti insultes
+        let foundInText = false;
+        for (let i in bot.config.raid.insultes) {
+            if(message.content.toLocaleLowerCase().includes(bot.config.raid.insultes[i].toLowerCase())) foundInText = true;
+        }
+        if (foundInText) {
+            if (message.channel.permissionsFor(bot.user).has('ADMINISTRATOR')) return;
+            message.delete();
+            message.channel.send(`<@!${message.author.id}>`,
+                new MessageEmbed()
+                    .setColor("RED")
+                    .setTitle("Les insultes sont interdites !")
+                    .setFooter(`HenoriaBot`, bot.user.displayAvatarURL({dynamic: true}))
+                    .setTimestamp()
+            ).then(m => m.delete({timeout: 5000}))
+        }
+
+
         // If bot was mentioned
         if (message.mentions.has(bot.user)) {
             const embed = new MessageEmbed()
@@ -46,7 +65,7 @@ module.exports = class Message extends Event {
             } 
 
             // Make sure user does not have access to ownerOnly commands
-            if (cmd.conf.ownerOnly && !bot.config.ownerID.includes(message.author.id)) return message.channel.send('Nice try').then(m => m.delete({ timeout:5000 }));
+            if (cmd.conf.ownerOnly && !bot.config.ownerID.includes(message.author.id))   return message.channel.error(bot.config.language, 'EVENTS/NOT_OWNER').then(m => m.delete({ timeout:5000 }));
 
             // Check bot has permissions
             if (cmd.conf.botPermissions[0] && message.guild) {
@@ -73,6 +92,10 @@ module.exports = class Message extends Event {
 					return message.channel.error(bot.config.language, 'EVENTS/COMMAND_COOLDOWN', timeLeft.toFixed(1)).then(m => m.delete({ timeout:5000 }));
 				}
 			}
+
+
+            // delete the command run by user
+            message.delete({timeout: 2000})
 
             // run the command
             if (bot.config.debug) bot.logger.debug(`Command: ${cmd.help.name} was ran by ${message.author.tag}${!message.guild ? '' : ` in guild: ${message.guild.id}`}.`);

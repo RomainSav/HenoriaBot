@@ -3,7 +3,7 @@ const Henoria = require('../../base/Henoria');
 const Config = require('../../../resources/config.json');
 const Command = require("../../structures/Command");
 
-module.exports = class Ban extends Command {
+module.exports = class Pause extends Command {
     
     constructor(bot) {
         super(bot, {

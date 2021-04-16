@@ -1,6 +1,6 @@
 const Client = require('./base/Henoria');
 require('./structures');
-const bot = new Client();
+const bot = new Client({ partials: ['CHANNEL', 'MESSAGE', 'REACTION', 'USER'] });
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const path = require('path');
@@ -13,7 +13,7 @@ const fs = require('fs');
     bot.logger.log('=-=-=-=-=-=-=- Loading command(s) -=-=-=-=-=-=-=');
     cmdFolders.forEach(async (dir) => {
     
-        const commands = await readdir(path.join(__dirname, 'commands', dir));
+        const commands = (await readdir(path.join(__dirname, 'commands', dir))).filter(files => files.endsWith(".js"));
         commands.forEach((cmd) => {
             const resp = bot.loadCommand(`./commands/${dir}`, cmd);
             if (resp) bot.logger.error(resp);

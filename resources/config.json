@@ -1,16 +1,31 @@
 {
-    "token": "ODE4MjE3NjAyNzk4MzIxNjY1.YEU2hg.lRc7un820gBt5cBbXAazh0eaku8",
-    "prefix": "+",
-    "language": "fr-FR",
+  "token": "ODE4MjE3NjAyNzk4MzIxNjY1.YEU2hg.lRc7un820gBt5cBbXAazh0eaku8",
+  "prefix": "+",
+  "language": "fr-FR",
 
-    "ownerID": ["533306853317279773", "507975251330727950"],
+  "ownerID": ["533306853317279773", "507975251330727950"],
 
-    "emojis": {
-      "cross": ":x:",
-      "tick": ":white_check_mark:",
+  "emojis": {
+    "cross": ":x:",
+    "tick": ":white_check_mark:",
 
-      "error": ":warning:",
-      "queue": ":bar_chart:",
-      "music": ":musical_note:"
-	}
+    "error": ":warning:",
+    "queue": ":bar_chart:",
+    "music": ":musical_note:",
+
+    "ticket": "📩",
+    "reopen": "🔓",
+    "close": "⛔"
+	},
+
+  "tickets": {
+    "panel": "818222075718271017",
+    "open": "832574636205015100",
+
+    "support_role": "832318813558931487"
+  },
+
+  "raid": {
+    "insultes": ["enculé", "fdp", "nique ta mère", "ntm", "fils de pute"]
+  }
 }

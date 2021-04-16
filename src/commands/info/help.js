@@ -4,7 +4,7 @@ const Config = require('../../../resources/config.json');
 const Command = require("../../structures/Command");
 const { cmd } = require('../../utils/logger');
 
-module.exports = class Ban extends Command {
+module.exports = class Help extends Command {
     
     constructor(bot) {
         super(bot, {
@@ -36,6 +36,10 @@ module.exports = class Ban extends Command {
                     {
                         name: '🎶 Musique',
                         value: '`play`, `pause`, `resume`, `stop`, `queue`, `shuffle`, `skip`'
+                    },
+                    {
+                        name: `📩 Support`,
+                        value: '`add`, `close`'
                     },
                     {
                         name: '🛠️ Modération',

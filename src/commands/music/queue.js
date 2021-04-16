@@ -1,9 +1,9 @@
-const { Message } = require('discord.js');
+const { Message, MessageEmbed } = require('discord.js');
 const Henoria = require('../../base/Henoria');
 const Config = require('../../../resources/config.json');
 const Command = require("../../structures/Command");
 
-module.exports = class Ban extends Command {
+module.exports = class Queue extends Command {
     
     constructor(bot) {
         super(bot, {
@@ -35,8 +35,17 @@ module.exports = class Ban extends Command {
 
         if (!queue) return message.channel.error(settings.language, 'MUSIC/NOT_PLAYING');
 
-        message.channel.send(`**Liste d'attente - ${settings.emojis.queue} ${queue.loopMode ? '(loop)' : ''}**\nActuel : ${queue.playing.title} | ${queue.playing.author}\n` + (queue.tracks.map((track, i) => {
+        message.channel.send(
+            new MessageEmbed()
+                .setColor("BLUE")
+                .setTitle(`**Liste d'attente - ${settings.emojis.queue} ${queue.loopMode ? '(loop)' : ''}**`)
+                .setDescription(`\nActuel : ${queue.playing.title} | ${queue.playing.author}\n` + (queue.tracks.map((track, i) => {
+                    return `**${i + 1}** - ${track.title} | ${track.author} (demandé par : ${track.requestedBy.username})`
+                }).slice(0, 5).join("\n") + `\n\n${queue.tracks.length > 5 ? `And **${queue.tracks.length -5}** other songs...` : `**${queue.tracks.length}** musique(s) dans la file d'attente`}`))
+        )
+
+        /*message.channel.send(`**Liste d'attente - ${settings.emojis.queue} ${queue.loopMode ? '(loop)' : ''}**\nActuel : ${queue.playing.title} | ${queue.playing.author}\n` + (queue.tracks.map((track, i) => {
             return `**${i + 1}** - ${track.title} | ${track.author} (demandé par : ${track.requestedBy.username})`
-        }).slice(0, 5).join("\n") + `\n\n${queue.tracks.length > 5 ? `And **${queue.tracks.length -5}** other songs...` : `**${queue.tracks.length}** musique(s) dans la file d'attente`}`))
+        }).slice(0, 5).join("\n") + `\n\n${queue.tracks.length > 5 ? `And **${queue.tracks.length -5}** other songs...` : `**${queue.tracks.length}** musique(s) dans la file d'attente`}`))*/
     }
 }
