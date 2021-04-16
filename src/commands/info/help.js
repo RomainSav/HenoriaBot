@@ -34,6 +34,10 @@ module.exports = class Ban extends Command {
                         value: '`help`',
                     },
                     {
+                        name: '🎶 Musique',
+                        value: '`play`, `pause`, `resume`, `stop`, `queue`, `shuffle`, `skip`'
+                    },
+                    {
                         name: '🛠️ Modération',
                         value: '`ban`, `tempban`, `unban`, `mute`, `tempmute`, `unmute`, `clear`',
                     },

@@ -18,7 +18,15 @@ module.exports = class Henoria extends Client {
 		this.Activity = [];
 		this.PresenceType = 'PLAYING';
 
-        this.player = new Player(this);
+        this.player = new Player(this, {
+            leaveOnEnd: false,
+            leaveOnEndCooldown: false,
+            leaveOnStop: false,
+            leaveOnEmpty: true,
+            leaveOnEmptyCooldown: false,
+            autoSelfDeaf: true,
+            quality: 'high'
+        });
     }
 
     /**

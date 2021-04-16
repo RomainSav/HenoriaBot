@@ -7,11 +7,11 @@ module.exports = class Ban extends Command {
     
     constructor(bot) {
         super(bot, {
-            name: 'play',
+            name: 'queue',
             guildOnly: true,
             dirname: __dirname,
-            description: "Jouer une musique",
-            usage: "play [name|url]"
+            description: "Voir la file d'attente",
+            usage: "queue"
         })
     }
 
@@ -31,18 +31,12 @@ module.exports = class Ban extends Command {
             return message.channel.error(settings.language, "MUSIC/NOT_IN_SAME_CHANNEL")
         }
 
-        if (!args[0]) return message.channel.error(settings.language, `MUSIC/EMPTY_SONG_NAME`)
+        const queue = bot.player.getQueue(message);
 
-        /*if (query.match(/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi)) {
-           
-        }*/
+        if (!queue) return message.channel.error(settings.language, 'MUSIC/NOT_PLAYING');
 
-        const query = args.join(" ");
-
-        if (!query.includes("open.spotify.com")) {
-
-            bot.player.play(message, query, { firstResult: true })
-
-        }
+        message.channel.send(`**Liste d'attente - ${settings.emojis.queue} ${queue.loopMode ? '(loop)' : ''}**\nActuel : ${queue.playing.title} | ${queue.playing.author}\n` + (queue.tracks.map((track, i) => {
+            return `**${i + 1}** - ${track.title} | ${track.author} (demandé par : ${track.requestedBy.username})`
+        }).slice(0, 5).join("\n") + `\n\n${queue.tracks.length > 5 ? `And **${queue.tracks.length -5}** other songs...` : `**${queue.tracks.length}** musique(s) dans la file d'attente`}`))
     }
 }

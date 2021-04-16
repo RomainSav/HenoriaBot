@@ -20,7 +20,7 @@ node src/main.js
 ```
 
 # Commandes
-### Modération 
+## Modération 
 - [x] ban
 - [x] unban
 - [ ] tempban
@@ -30,3 +30,6 @@ node src/main.js
 - [x] clear
 - [x] lock
 - [x] unlock
+
+## Musique
+- [x] play

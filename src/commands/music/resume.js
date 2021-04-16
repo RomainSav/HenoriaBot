@@ -7,11 +7,11 @@ module.exports = class Ban extends Command {
     
     constructor(bot) {
         super(bot, {
-            name: 'play',
+            name: 'resume',
             guildOnly: true,
             dirname: __dirname,
-            description: "Jouer une musique",
-            usage: "play [name|url]"
+            description: "Relancer la musique sur pause",
+            usage: "resume"
         })
     }
 
@@ -31,18 +31,18 @@ module.exports = class Ban extends Command {
             return message.channel.error(settings.language, "MUSIC/NOT_IN_SAME_CHANNEL")
         }
 
-        if (!args[0]) return message.channel.error(settings.language, `MUSIC/EMPTY_SONG_NAME`)
+        if (!bot.player.getQueue(message)) {
+            return message.channel.error(settings.language, "MUSIC/NOT_PLAYING");
+        }
 
-        /*if (query.match(/^(https?:\/\/)?(www\.)?(m\.)?(youtube\.com|youtu\.?be)\/.+$/gi)) {
-           
-        }*/
+        if (!bot.player.getQueue(message).paused) {
+            return message.channel.error(settings.language, "MUSIC/ALREADY_PLAYING");
+        }
 
-        const query = args.join(" ");
+        const success = bot.player.resume(message);
 
-        if (!query.includes("open.spotify.com")) {
-
-            bot.player.play(message, query, { firstResult: true })
-
+        if (success) {
+            return message.channel.info(settings.language, "MUSIC/SUCCESS_RESUMED", bot.player.getQueue(message).playing.title)
         }
     }
 }
